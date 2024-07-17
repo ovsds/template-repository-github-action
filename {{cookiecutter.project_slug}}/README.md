@@ -21,9 +21,9 @@
 
 ### Action Outputs
 
-| Name          | Description  | Default |
-| ------------- | ------------ | ------- |
-| `placeholder` | Placeholder. |         |
+| Name          | Description  |
+| ------------- | ------------ |
+| `placeholder` | Placeholder. |
 
 ## Development
 
