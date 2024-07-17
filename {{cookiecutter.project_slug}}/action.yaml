@@ -1,5 +1,5 @@
-name: "Placeholder name"
-description: "Placeholder description"
+name: "{{ cookiecutter.project_name }}"
+description: "{{ cookiecutter.project_description }}"
 
 inputs:
   placeholder:
