@@ -1,0 +1,9 @@
+{
+  "_empty_guard": "",
+  "project_name": "Template Action",
+  "project_description": "{{ cookiecutter.project_name }}",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ',  '-') }}",
+  "marketplace_name": "Template",
+  "marketplace_slug": "{{ cookiecutter.marketplace_name.lower().replace(' ',  '-') }}",
+  "_node_version": "v21.5.0"
+}
