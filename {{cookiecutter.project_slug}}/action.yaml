@@ -1,4 +1,4 @@
-name: "{{ cookiecutter.project_name }}"
+name: "{{ cookiecutter.marketplace_name }}"
 description: "{{ cookiecutter.project_description }}"
 
 inputs:
