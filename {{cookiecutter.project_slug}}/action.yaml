@@ -10,7 +10,10 @@ inputs:
 outputs:
   placeholder:
     description: "Placeholder output to be replaced by real outputs"
+{%- if cookiecutter.action_type == 'composite' %}
     value: ${{ "{{" }}steps.placeholder.outputs.placeholder }}
+{%- endif %}
+{%- if cookiecutter.action_type == 'composite' %}
 
 runs:
   using: "composite"
@@ -20,6 +23,13 @@ runs:
       shell: bash
       run: |
         echo "::set-output name=placeholder::${{ "{{" }} inputs.placeholder }}"
+{%- endif %}
+{%- if cookiecutter.action_type == 'node20' %}
+
+runs:
+  using: node20
+  main: dist/index.js
+{%- endif %}
 
 # https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#branding
 branding:
