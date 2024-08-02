@@ -18,7 +18,6 @@ def test_replay(replay: replay_utils.Replay):
     cli_utils.run_command("task lint-fix", cwd=cwd)
     cli_utils.run_command("task clean", cwd=cwd)
 
-    cli_utils.run_command("source ${HOME}/.nvm/nvm.sh && nvm deactivate", cwd=cwd)
     replay_utils.clean_replay(replay, RESULTS_PATH)
 
 

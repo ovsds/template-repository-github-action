@@ -12,7 +12,7 @@ class CommandError(Exception):
 def run_command(command: str, cwd: typing.Optional[str] = None) -> None:
     print(f"Running command {command}...")
     try:
-        subprocess.run(f"/bin/bash -c '{command}'", cwd=cwd, check=True, shell=True)
+        subprocess.run(command, cwd=cwd, check=True, shell=True)
     except subprocess.CalledProcessError as exc:
         stderr = exc.stderr.decode("utf-8") if exc.stderr else ""
         exit_code = exc.returncode
