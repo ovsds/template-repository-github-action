@@ -21,8 +21,7 @@ tasks:
     desc: Initialize project environment
     cmds:
       - echo 'Installing node version...'
-      - task: _with_nvm
-        vars: { COMMAND: "nvm install" }
+      - source ${HOME}/.nvm/nvm.sh && nvm install
 
       - echo 'Installing node dependencies...'
       - task: _with_nvm
@@ -52,24 +51,8 @@ tasks:
   test:
     desc: Test project
     cmds:
-      - echo 'Cleaning test results directory...'
-      - rm -rf {{.TEST_RESULTS}}
-
-      - echo 'Building test project...'
-      - cookiecutter --output-dir {{.TEST_RESULTS}} --replay-file .test_replay.json .
-
-      - echo 'Initializing git...'
-      - cd {{.TEST_RESULTS}}/test/ && git init
-
-      - echo 'Generating lock file...'
-      - task: _with_nvm
-        vars: { COMMAND: "cd {{.TEST_RESULTS}}/test && npm install --package-lock-only" }
-
-      - echo 'Testing Taskfile commands...'
-      - task --dir {{.TEST_RESULTS}}/test init
-      - task --dir {{.TEST_RESULTS}}/test lint
-      - task --dir {{.TEST_RESULTS}}/test lint-fix
-      - task --dir {{.TEST_RESULTS}}/test clean
+      - echo 'Running tests...'
+      - python -m tests
 
   clean:
     desc: Clean project environment
@@ -87,32 +70,3 @@ tasks:
         vars: { COMMAND: "npm outdated" }
       - task: _with_nvm
         vars: { COMMAND: "npm audit" }
-
-  # CI-specific
-
-  ci-init:
-    desc: Initialize project environment in CI
-    cmds:
-      - echo 'Installing node dependencies...'
-      - npm clean-install
-
-  ci-test:
-    desc: Test project in CI
-    cmds:
-      - echo 'Cleaning test results directory...'
-      - rm -rf {{.TEST_RESULTS}}
-
-      - echo 'Building test project...'
-      - cookiecutter --output-dir {{.TEST_RESULTS}} --replay-file .test_replay.json .
-
-      - echo 'Initializing git...'
-      - cd {{.TEST_RESULTS}}/test/ && git init
-
-      - echo 'Generating lock file...'
-      - cd {{.TEST_RESULTS}}/test && npm install --package-lock-only
-
-      - echo 'Testing Taskfile commands...'
-      - task --dir {{.TEST_RESULTS}}/test ci-init
-      - task --dir {{.TEST_RESULTS}}/test lint
-      - task --dir {{.TEST_RESULTS}}/test lint-fix
-      - task --dir {{.TEST_RESULTS}}/test clean

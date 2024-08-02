@@ -1,1 +1,1 @@
-{{cookiecutter._node_version}}
+{{cookiecutter.node_version}}
