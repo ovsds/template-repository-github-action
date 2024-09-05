@@ -1,5 +1,9 @@
 # Cookiecutter Template for GitHub Actions Repository
 
+[![CI](https://github.com/ovsds/template-repository-github-action/workflows/Check%20PR/badge.svg)](https://github.com/ovsds/template-repository-github-action/actions?query=workflow%3A%22%22Check+PR%22%22)
+
+Cookiecutter Template for GitHub Actions Repository
+
 ## Usage
 
 ### Global dependencies
@@ -20,6 +24,17 @@ cookiecutter \
   --output-dir ../ \
   https://github.com/ovsds/template-repository-github-action
 ```
+
+## Development
+
+### Global dependencies
+
+- nvm
+- node
+
+### Taskfile commands
+
+For all commands see [Taskfile](Taskfile.yaml) or `task --list-all`.
 
 ## License
 

@@ -1,0 +1,22 @@
+{
+  "default_parameters": {
+    "project_name": "Test Project Name",
+    "project_slug": "test-project-name",
+    "marketplace_name": "Test Marketplace Name"
+  },
+  "replays": [
+    {
+      "name": "Composite action",
+      "parameters": {
+        "node_version": "v21.5.0",
+        "action_type": "composite"
+      }
+    },
+    {
+      "name": "Node20 action",
+      "parameters": {
+        "action_type": "node20"
+      }
+    }
+  ]
+}

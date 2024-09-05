@@ -15,15 +15,11 @@ tasks:
   _with_nvm:
     internal: true
     cmds:
-      - "source ${HOME}/.nvm/nvm.sh && nvm use && {{.COMMAND}}"
+      - "source ${HOME}/.nvm/nvm.sh && nvm install && {{.COMMAND}}"
 
   init:
     desc: Initialize project environment
     cmds:
-      - echo 'Installing node version...'
-      - task: _with_nvm
-        vars: { COMMAND: "nvm install" }
-
       - echo 'Installing node dependencies...'
       - task: _with_nvm
         vars: { COMMAND: "npm install" }
@@ -31,9 +27,6 @@ tasks:
       - echo 'Installing husky pre-commit...'
       - task: _with_nvm
         vars: { COMMAND: "npm run prepare" }
-
-      - for: { var: SERVICES, as: SERVICE }
-        task: "{{.SERVICE}}:init"
 
   lint:
     desc: Lint project
@@ -52,30 +45,17 @@ tasks:
   test:
     desc: Test project
     cmds:
-      - echo 'Cleaning test results directory...'
-      - rm -rf {{.TEST_RESULTS}}
-
-      - echo 'Building test project...'
-      - cookiecutter --output-dir {{.TEST_RESULTS}} --replay-file .test_replay.json .
-
-      - echo 'Initializing git...'
-      - cd {{.TEST_RESULTS}}/test/ && git init
-
-      - echo 'Generating lock file...'
-      - task: _with_nvm
-        vars: { COMMAND: "cd {{.TEST_RESULTS}}/test && npm install --package-lock-only" }
-
-      - echo 'Testing Taskfile commands...'
-      - task --dir {{.TEST_RESULTS}}/test init
-      - task --dir {{.TEST_RESULTS}}/test lint
-      - task --dir {{.TEST_RESULTS}}/test lint-fix
-      - task --dir {{.TEST_RESULTS}}/test clean
+      - echo 'Running tests...'
+      - python -m tests
 
   clean:
     desc: Clean project environment
     cmds:
       - echo 'Cleaning node dependencies...'
       - rm -rf {{.NENV}}
+
+      - echo 'Cleaning test results...'
+      - rm -rf {{.TEST_RESULTS}}
 
   dependencies-update:
     desc: Update dependencies
@@ -88,31 +68,18 @@ tasks:
       - task: _with_nvm
         vars: { COMMAND: "npm audit" }
 
-  # CI-specific
-
-  ci-init:
-    desc: Initialize project environment in CI
+  update-from-template:
+    desc: Update project from template
     cmds:
-      - echo 'Installing node dependencies...'
-      - npm clean-install
-
-  ci-test:
-    desc: Test project in CI
-    cmds:
-      - echo 'Cleaning test results directory...'
-      - rm -rf {{.TEST_RESULTS}}
-
-      - echo 'Building test project...'
-      - cookiecutter --output-dir {{.TEST_RESULTS}} --replay-file .test_replay.json .
-
-      - echo 'Initializing git...'
-      - cd {{.TEST_RESULTS}}/test/ && git init
-
-      - echo 'Generating lock file...'
-      - cd {{.TEST_RESULTS}}/test && npm install --package-lock-only
-
-      - echo 'Testing Taskfile commands...'
-      - task --dir {{.TEST_RESULTS}}/test ci-init
-      - task --dir {{.TEST_RESULTS}}/test lint
-      - task --dir {{.TEST_RESULTS}}/test lint-fix
-      - task --dir {{.TEST_RESULTS}}/test clean
+      - echo 'Updating project from template...'
+      - cookiecutter
+        --no-input
+        --overwrite-if-exists
+        --output-dir ../
+        {{.TEMPLATE_PATH}}
+        project_name="Cookiecutter Template for GitHub Actions Repository"
+        project_slug="template-repository-github-action"
+        node_version="v21.5.0"
+        github_owner="ovsds"
+    vars:
+      TEMPLATE_PATH: '{{.TEMPLATE_PATH | default "https://github.com/ovsds/template-repository"}}'
