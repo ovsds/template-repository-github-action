@@ -80,6 +80,9 @@ tasks:
         project_name="Cookiecutter Template for GitHub Actions Repository"
         project_slug="template-repository-github-action"
         node_version="v21.5.0"
-        github_owner="ovsds"
+        owner_name="Dmitry Ovsiannikov"
+        owner_github_login="ovsds"
+        scripts="false"
+        services=""
     vars:
       TEMPLATE_PATH: '{{.TEMPLATE_PATH | default "https://github.com/ovsds/template-repository"}}'
