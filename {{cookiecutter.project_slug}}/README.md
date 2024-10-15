@@ -10,7 +10,15 @@
 ### Example
 
 ```yaml
-placeholder # TODO: Add example
+jobs:
+  {{cookiecutter.marketplace_slug}}:
+    permissions:
+      contents: read
+
+    steps:
+      - name: {{cookiecutter.marketplace_name}}
+        id: {{cookiecutter.marketplace_slug}}
+        uses: {{cookiecutter.owner_github_login}}/{{cookiecutter.project_slug}}@v1
 ```
 
 ### Action Inputs
