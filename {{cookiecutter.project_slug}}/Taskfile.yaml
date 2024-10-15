@@ -80,9 +80,11 @@ tasks:
         --output-dir ../
         {{ "{{" }}.TEMPLATE_PATH}}
         project_name="{{cookiecutter.project_name}}"
+        project_slug="{{cookiecutter.project_slug}}"
         marketplace_name="{{cookiecutter.marketplace_name}}"
         action_type="{{cookiecutter.action_type}}"
         node_version="{{cookiecutter.node_version}}"
-        github_owner="{{cookiecutter.github_owner}}"
+        owner_name="{{cookiecutter.owner_name}}"
+        owner_github_login="{{cookiecutter.owner_github_login}}"
     vars:
       TEMPLATE_PATH: '{{ "{{" }}.TEMPLATE_PATH | default "https://github.com/ovsds/template-repository-github-action"}}'

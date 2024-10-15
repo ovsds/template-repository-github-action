@@ -6,6 +6,7 @@
   "marketplace_slug": "{{ cookiecutter.marketplace_name.lower().replace(' ',  '-') }}",
   "action_type": ["composite", "node20"],
   "node_version": "v20.15.1",
-  "github_owner": "ovsds",
+  "owner_name": "Dmitry Ovsiannikov",
+  "owner_github_login": "ovsds",
   "_empty_guard": ""
 }
