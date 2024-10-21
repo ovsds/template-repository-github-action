@@ -1,5 +1,5 @@
 name: "{{ cookiecutter.marketplace_name }}"
-description: "{{ cookiecutter.project_description }}"
+description: "{{ cookiecutter.project_name }}"
 
 inputs:
   placeholder:

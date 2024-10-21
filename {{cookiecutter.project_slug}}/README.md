@@ -3,7 +3,7 @@
 [![CI](https://github.com/{{cookiecutter.owner_github_login}}/{{cookiecutter.project_slug}}/workflows/Check%20PR/badge.svg)](https://github.com/{{cookiecutter.owner_github_login}}/{{cookiecutter.project_slug}}/actions?query=workflow%3A%22%22Check+PR%22%22)
 [![GitHub Marketplace](https://img.shields.io/badge/Marketplace-{{ cookiecutter.marketplace_name.replace(' ',  '%20') }}-blue.svg)](https://github.com/marketplace/actions/{{cookiecutter.marketplace_slug}})
 
-{{cookiecutter.project_description}}
+{{cookiecutter.project_name}}
 
 ## Usage
 
