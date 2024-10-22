@@ -29,3 +29,16 @@ jobs:
         with:
           actual: ${{ "{{" }} steps.test-run.outputs.placeholder }}
           expected: "test_placeholder"
+  e2e:
+    runs-on: ubuntu-latest
+    if: always() && !cancelled()
+
+    needs:
+      - e2e-default
+
+    steps:
+      - name: Collect Results
+        uses: ovsds/collect-needs-result-action@v1
+        with:
+          needs_json: ${{ "{{" }} toJson(needs) }}
+          skip_allowed: false
