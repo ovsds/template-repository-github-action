@@ -67,6 +67,11 @@ tasks:
         vars: { COMMAND: "npm update" }
       - task: _with_nvm
         vars: { COMMAND: "npm outdated" }
+
+  dependencies-check:
+    desc: Check dependencies
+    cmds:
+      - echo 'Checking node dependencies...'
       - task: _with_nvm
         vars: { COMMAND: "npm audit" }
 
