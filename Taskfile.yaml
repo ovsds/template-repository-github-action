@@ -35,12 +35,18 @@ tasks:
       - task: _prettier
         vars: { COMMAND: "--check ." }
 
+      - echo 'Running GHA checks...'
+      - GH_TOKEN="$(gh auth token)" zizmor .github/*
+
   lint-fix:
     desc: Lint fix project
     cmds:
       - echo 'Running prettier fixes...'
       - task: _prettier
         vars: { COMMAND: "--write ." }
+
+      - echo 'Running GHA checks...'
+      - GH_TOKEN="$(gh auth token)" zizmor .github/*
 
   test:
     desc: Test project
@@ -89,5 +95,11 @@ tasks:
         owner_github_login='ovsds'
         scripts='false'
         services=''
+        with_python='true'
+        with_cookiecutter='true'
+        with_trivy='false'
+        with_zizmor='true'
+        with_docker='false'
+        with_build='false'
     vars:
       TEMPLATE_PATH: '{{.TEMPLATE_PATH | default "https://github.com/ovsds/template-repository"}}'

@@ -8,7 +8,7 @@ Cookiecutter Template for GitHub Actions Repository
 
 ### Global dependencies
 
-- cookiecutter
+- [cookiecutter](https://cookiecutter.readthedocs.io/en/stable/installation.html)
 
 ### Basic usage
 
@@ -31,6 +31,7 @@ cookiecutter \
 
 - [Taskfile](https://taskfile.dev/installation/)
 - [nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#install--update-script)
+- [zizmor](https://woodruffw.github.io/zizmor/installation/) - used for GHA security scanning
 
 ### Taskfile commands
 

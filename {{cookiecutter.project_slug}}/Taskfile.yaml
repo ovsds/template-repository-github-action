@@ -32,12 +32,23 @@ tasks:
     cmds:
       - task: _with_nvm
         vars: { COMMAND: "npm run lint:check" }
+{%- if cookiecutter.with_zizmor == 'true' %}
+
+      - echo 'Running GHA checks...'
+      - GH_TOKEN="$(gh auth token)" zizmor .
+{%- endif %}
 
   lint-fix:
     desc: Lint fix project
     cmds:
       - task: _with_nvm
         vars: { COMMAND: "npm run lint:fix" }
+{%- if cookiecutter.with_zizmor == 'true' %}
+
+      - echo 'Running GHA checks...'
+      - GH_TOKEN="$(gh auth token)" zizmor .
+{%- endif %}
+
 {%- if cookiecutter.action_type == 'node20' %}
 
   test:
@@ -65,13 +76,13 @@ tasks:
       - echo 'Updating node dependencies...'
       - task: _with_nvm
         vars: { COMMAND: "npm update" }
-      - task: _with_nvm
-        vars: { COMMAND: "npm outdated" }
 
   dependencies-check:
     desc: Check dependencies
     cmds:
       - echo 'Checking node dependencies...'
+      - task: _with_nvm
+        vars: { COMMAND: "npm outdated" }
       - task: _with_nvm
         vars: { COMMAND: "npm audit" }
 
@@ -91,5 +102,6 @@ tasks:
         node_version='{{cookiecutter.node_version}}'
         owner_name='{{cookiecutter.owner_name}}'
         owner_github_login='{{cookiecutter.owner_github_login}}'
+        with_zizmor='{{cookiecutter.with_zizmor}}'
     vars:
       TEMPLATE_PATH: '{{ "{{" }}.TEMPLATE_PATH | default "https://github.com/ovsds/template-repository-github-action"}}'

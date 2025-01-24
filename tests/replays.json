@@ -6,6 +6,13 @@
   },
   "replays": [
     {
+      "name": "With Zizmor",
+      "parameters": {
+        "action_type": "node20",
+        "with_zizmor": "true"
+      }
+    },
+    {
       "name": "Composite action",
       "parameters": {
         "node_version": "v21.5.0",
