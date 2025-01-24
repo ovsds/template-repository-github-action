@@ -7,5 +7,6 @@
   "node_version": "v20.15.1",
   "owner_name": "Dmitry Ovsiannikov",
   "owner_github_login": "ovsds",
+  "with_zizmor": "false",
   "_empty_guard": ""
 }
