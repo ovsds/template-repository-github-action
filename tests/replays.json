@@ -8,7 +8,7 @@
     {
       "name": "With Zizmor",
       "parameters": {
-        "action_type": "node20",
+        "action_type": "node",
         "with_zizmor": "true"
       }
     },
@@ -20,9 +20,9 @@
       }
     },
     {
-      "name": "Node20 action",
+      "name": "node action",
       "parameters": {
-        "action_type": "node20"
+        "action_type": "node"
       }
     }
   ]

@@ -43,7 +43,7 @@ jobs:
           GH_TOKEN: ${{ "{{" }} secrets.GITHUB_TOKEN }} # Required for Zizmor
         {%- endif %}
 
-{%- if cookiecutter.action_type == 'node20' %}
+{%- if cookiecutter.action_type == 'node' %}
 
       - name: Test PR
         run: |

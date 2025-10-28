@@ -24,10 +24,10 @@ runs:
       run: |
         echo "::set-output name=placeholder::${{ "{{" }} inputs.placeholder }}"
 {%- endif %}
-{%- if cookiecutter.action_type == 'node20' %}
+{%- if cookiecutter.action_type == 'node' %}
 
 runs:
-  using: node20
+  using: node24
   main: dist/index.js
 {%- endif %}
 

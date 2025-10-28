@@ -1,33 +1,32 @@
 {
   "private": true,
   "name": "{{cookiecutter.project_slug}}",
-{%- if cookiecutter.action_type == 'node20' %}
+{%- if cookiecutter.action_type == 'node' %}
   "main": "lib/main.js",
   "dependencies": {
-    "@actions/core": "1.10.1"
+    "@actions/core": "1.11.1"
   },
 {%- endif %}
   "devDependencies": {
-{%- if cookiecutter.action_type == 'node20' %}
-    "@gravity-ui/eslint-config": "^3.1.1",
-    "@types/node": "^20.12.7",
-    "@typescript-eslint/eslint-plugin": "^7.17.0",
-    "@vercel/ncc": "^0.38.1",
-    "eslint": "^8.57.0",
-    "vitest": "^2.0.4",
+{%- if cookiecutter.action_type == 'node' %}
+    "@types/node": "^24.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@vercel/ncc": "^0.38.0",
+    "eslint": "^9.0.0",
+    "vitest": "^4.0.0",
 {%- endif %}
-    "@commitlint/cli": "^19.0.3",
-    "@commitlint/config-conventional": "^19.0.3",
-    "husky": "^9.1.1",
-    "lint-staged": "^15.2.0",
-    "prettier": "^3.1.1"
+    "@commitlint/cli": "^20.0.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^16.0.0",
+    "prettier": "^3.0.0"
   },
   "hooks": {
     "pre-commit": "lint-staged",
     "commit-msg": "commitlint"
   },
   "lint-staged": {
-{%- if cookiecutter.action_type == 'node20' %}
+{%- if cookiecutter.action_type == 'node' %}
     "*.{ts,tsx}": [
       "prettier --check",
       "eslint"
@@ -38,17 +37,17 @@
     ]
   },
   "scripts": {
-    "lint:check": "npm run lint:check:prettier{% if cookiecutter.action_type == 'node20' %} && npm run lint:check:eslint{% endif %}",
-{%- if cookiecutter.action_type == 'node20' %}
+    "lint:check": "npm run lint:check:prettier{% if cookiecutter.action_type == 'node' %} && npm run lint:check:eslint{% endif %}",
+{%- if cookiecutter.action_type == 'node' %}
     "lint:check:eslint": "eslint .",
 {%- endif %}
     "lint:check:prettier": "prettier --check .",
-    "lint:fix": "npm run lint:fix:prettier{% if cookiecutter.action_type == 'node20' %} && npm run lint:fix:eslint{% endif %}",
-{%- if cookiecutter.action_type == 'node20' %}
+    "lint:fix": "npm run lint:fix:prettier{% if cookiecutter.action_type == 'node' %} && npm run lint:fix:eslint{% endif %}",
+{%- if cookiecutter.action_type == 'node' %}
     "lint:fix:eslint": "eslint . --fix",
 {%- endif %}
     "lint:fix:prettier": "prettier --write .",
-{%- if cookiecutter.action_type == 'node20' %}
+{%- if cookiecutter.action_type == 'node' %}
     "test": "vitest",
     "test:unit": "vitest tests/unit",
     "test:integration": "vitest tests/integration",
