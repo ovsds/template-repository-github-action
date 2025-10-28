@@ -7,7 +7,7 @@
 
 # Dependencies
 node_modules/
-{%- if cookiecutter.action_type == 'node20' %}
+{%- if cookiecutter.action_type == 'node' %}
 
 # Build files
 lib/**/*

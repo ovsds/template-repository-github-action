@@ -14,15 +14,16 @@ def remove_file(file_path: str, missing_ok: bool = False) -> None:
 
 
 if __name__ == "__main__":
-    if "{{ cookiecutter.action_type }}" != "node20":
+    if "{{ cookiecutter.action_type }}" != "node":
         remove_folder("src")
         remove_folder("tests")
-        remove_file(".eslintignore")
-        remove_file(".eslintrc.json")
         remove_file(".prettierignore")
+        remove_file("eslint.config.js")
         remove_file("tsconfig.json")
         remove_file("tsconfig_eslint.json")
         remove_file("vitest.config.ts")
 
     # Remove files from older versions
+    remove_file(".eslintignore", missing_ok=True)
+    remove_file(".eslintrc.json", missing_ok=True)
     remove_file(".husky/.huskyrc", missing_ok=True)
