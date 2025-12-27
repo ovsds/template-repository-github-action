@@ -4,12 +4,12 @@
 {%- if cookiecutter.action_type == 'node' %}
   "main": "lib/main.js",
   "dependencies": {
-    "@actions/core": "1.11.1"
+    "@actions/core": "2.0.1"
   },
 {%- endif %}
   "devDependencies": {
 {%- if cookiecutter.action_type == 'node' %}
-    "@types/node": "^24.0.0",
+    "@types/node": "^25.0.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@vercel/ncc": "^0.38.0",
     "eslint": "^9.0.0",

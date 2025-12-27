@@ -12,9 +12,6 @@
 ```yaml
 jobs:
   {{cookiecutter.marketplace_slug}}:
-    permissions:
-      contents: read
-
     steps:
       - name: {{cookiecutter.marketplace_name}}
         id: {{cookiecutter.marketplace_slug}}
@@ -23,15 +20,26 @@ jobs:
 
 ### Action Inputs
 
-| Name          | Description  | Default |
-| ------------- | ------------ | ------- |
-| `placeholder` | Placeholder. |         |
+```yaml
+inputs:
+  placeholder:
+    description: |
+      Placeholder input to be replaced by real inputs
+    required: true
+    default: "placeholder"
+```
 
 ### Action Outputs
 
-| Name          | Description  |
-| ------------- | ------------ |
-| `placeholder` | Placeholder. |
+```yaml
+outputs:
+  placeholder:
+    description: |
+      Placeholder output to be replaced by real outputs
+{%- if cookiecutter.action_type == 'composite' %}
+    value: ${{ "{{" }}steps.placeholder.outputs.placeholder }}
+{%- endif %}
+```
 
 ## Development
 
