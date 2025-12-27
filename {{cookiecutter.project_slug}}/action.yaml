@@ -1,15 +1,23 @@
 name: "{{ cookiecutter.marketplace_name }}"
-description: "{{ cookiecutter.project_name }}"
+description: |
+  {{ cookiecutter.project_name }}
+
+# https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#branding
+branding:
+  icon: "message-square"
+  color: "gray-dark"
 
 inputs:
   placeholder:
-    description: "Placeholder input to be replaced by real inputs"
+    description: |
+      Placeholder input to be replaced by real inputs
     required: true
     default: "placeholder"
 
 outputs:
   placeholder:
-    description: "Placeholder output to be replaced by real outputs"
+    description: |
+      Placeholder output to be replaced by real outputs
 {%- if cookiecutter.action_type == 'composite' %}
     value: ${{ "{{" }}steps.placeholder.outputs.placeholder }}
 {%- endif %}
@@ -30,8 +38,3 @@ runs:
   using: node24
   main: dist/index.js
 {%- endif %}
-
-# https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#branding
-branding:
-  icon: "message-square"
-  color: "gray-dark"
