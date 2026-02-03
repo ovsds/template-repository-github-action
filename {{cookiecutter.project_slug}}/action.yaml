@@ -26,11 +26,14 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Placeholder
-      id: placeholder
+    - name: Run
+      id: run
       shell: bash
+      env:
+        INPUT_PLACEHOLDER: ${{ "{{" }} inputs.placeholder }}
       run: |
-        echo "::set-output name=placeholder::${{ "{{" }} inputs.placeholder }}"
+        # {{ cookiecutter.marketplace_name }}
+        ${{ "{{" }} github.action_path }}/src/main.sh
 {%- endif %}
 {%- if cookiecutter.action_type == 'node' %}
 

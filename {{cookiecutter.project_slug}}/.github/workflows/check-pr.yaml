@@ -26,9 +26,14 @@ jobs:
 
       - name: Setup Environment
         uses: ./.github/actions/setup_environment
-        {%- if cookiecutter.with_zizmor == 'true' %}
+        {%- if cookiecutter.with_zizmor == 'true' or cookiecutter.with_shellcheck == 'true' %}
         with:
+        {%- endif %}
+        {%- if cookiecutter.with_zizmor == 'true' %}
           zizmor-enabled: true
+        {%- endif %}
+        {%- if cookiecutter.with_shellcheck == 'true' %}
+          shellcheck-enabled: true
         {%- endif %}
 
       - name: Install Dependencies
