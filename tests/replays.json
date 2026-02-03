@@ -13,6 +13,13 @@
       }
     },
     {
+      "name": "With Shellcheck",
+      "parameters": {
+        "action_type": "composite",
+        "with_shellcheck": "true"
+      }
+    },
+    {
       "name": "Composite action",
       "parameters": {
         "node_version": "v21.5.0",

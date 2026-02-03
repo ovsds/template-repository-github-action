@@ -50,6 +50,9 @@ outputs:
 {%- if cookiecutter.with_zizmor == 'true' %}
 - [zizmor](https://woodruffw.github.io/zizmor/installation/) - used for GHA security scanning
 {%- endif %}
+{%- if cookiecutter.with_shellcheck == 'true' %}
+- [shellcheck](https://github.com/koalaman/shellcheck?tab=readme-ov-file#installing) - used for shell script linting
+{%- endif %}
 
 ### Taskfile commands
 

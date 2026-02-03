@@ -15,13 +15,19 @@ def remove_file(file_path: str, missing_ok: bool = False) -> None:
 
 if __name__ == "__main__":
     if "{{ cookiecutter.action_type }}" != "node":
-        remove_folder("src")
+        remove_folder("src/utils")
+        remove_file("src/action.ts")
+        remove_file("src/input.ts")
+        remove_file("src/main.ts")
         remove_folder("tests")
         remove_file(".prettierignore")
         remove_file("eslint.config.js")
         remove_file("tsconfig.json")
         remove_file("tsconfig_eslint.json")
         remove_file("vitest.config.ts")
+
+    if "{{ cookiecutter.action_type }}" != "composite":
+        remove_file("src/main.sh")
 
     # Remove files from older versions
     remove_file(".eslintignore", missing_ok=True)

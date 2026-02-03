@@ -103,5 +103,6 @@ tasks:
         owner_name='{{cookiecutter.owner_name}}'
         owner_github_login='{{cookiecutter.owner_github_login}}'
         with_zizmor='{{cookiecutter.with_zizmor}}'
+        with_shellcheck='{{cookiecutter.with_shellcheck}}'
     vars:
       TEMPLATE_PATH: '{{ "{{" }}.TEMPLATE_PATH | default "https://github.com/ovsds/template-repository-github-action"}}'
