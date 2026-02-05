@@ -19,7 +19,7 @@ outputs:
     description: |
       Placeholder output to be replaced by real outputs
 {%- if cookiecutter.action_type == 'composite' %}
-    value: ${{ "{{" }}steps.placeholder.outputs.placeholder }}
+    value: ${{ "{{" }}steps.run.outputs.placeholder }}
 {%- endif %}
 {%- if cookiecutter.action_type == 'composite' %}
 
