@@ -22,7 +22,6 @@
     {
       "name": "Composite action",
       "parameters": {
-        "node_version": "v21.5.0",
         "action_type": "composite"
       }
     },
