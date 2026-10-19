@@ -20,29 +20,23 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           persist-credentials: false
+{%- if cookiecutter.with_gitleaks == 'true' %}
+          fetch-depth: 0 # Gitleaks scans the whole history
+{%- endif %}
 
       - name: Setup Environment
-        uses: ./.github/actions/setup_environment
-        {%- if cookiecutter.with_zizmor == 'true' or cookiecutter.with_shellcheck == 'true' %}
-        with:
-        {%- endif %}
-        {%- if cookiecutter.with_zizmor == 'true' %}
-          zizmor-enabled: true
-        {%- endif %}
-        {%- if cookiecutter.with_shellcheck == 'true' %}
-          shellcheck-enabled: true
-        {%- endif %}
+        uses: $/.github/actions/setup_environment
 
       - name: Install Dependencies
         run: |
-          task init
+          mise run init
 
       - name: Lint PR
         run: |
-          task lint
+          mise run lint
         {%- if cookiecutter.with_zizmor == 'true' %}
         env:
           GH_TOKEN: ${{ "{{" }} secrets.GITHUB_TOKEN }} # Required for Zizmor
@@ -52,11 +46,11 @@ jobs:
 
       - name: Test PR
         run: |
-          task test
+          mise run test
 
       - name: Package PR
         run: |
-          task package
+          mise run package
 
       - name: Compare the expected and actual dist/ directories
         run: |

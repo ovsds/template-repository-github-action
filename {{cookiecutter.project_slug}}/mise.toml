@@ -1,0 +1,134 @@
+min_version = "2026.10.3"
+
+[tools]
+node = "{{ cookiecutter.node_version.lstrip('v') }}"
+uv = "0.13.1"
+python = "3.12.15"
+"pypi:cookiecutter" = "2.4.0"
+{%- if cookiecutter.with_zizmor == 'true' %}
+gh = "2.102.0"
+zizmor = "1.31.1"
+{%- endif %}
+{%- if cookiecutter.with_gitleaks == 'true' %}
+gitleaks = "8.30.1"
+{%- endif %}
+{%- if cookiecutter.with_shellcheck == 'true' %}
+shellcheck = "0.11.0"
+{%- endif %}
+
+[settings]
+task.quiet = true
+
+[tasks.init]
+description = "Initialize project environment"
+run = [
+  "echo 'Installing mise tools...'",
+  "mise install",
+
+  "echo 'Installing node dependencies...'",
+  "npm install",
+
+  "echo 'Installing husky pre-commit...'",
+  "npm run prepare",
+]
+
+[tasks.lint]
+description = "Lint project"
+run = [
+  "echo 'Running linters...'",
+  "npm run lint:check",
+{%- if cookiecutter.with_zizmor == 'true' %}
+
+  "echo 'Running GHA checks...'",
+  'GH_TOKEN="$(gh auth token)" zizmor .',
+{%- endif %}
+{%- if cookiecutter.with_gitleaks == 'true' %}
+
+  "echo 'Running secret scan...'",
+  "gitleaks git --log-opts=HEAD --redact --no-banner",
+{%- endif %}
+]
+
+[tasks.lint-fix]
+description = "Lint fix project"
+run = [
+  "echo 'Running linter fixes...'",
+  "npm run lint:fix",
+{%- if cookiecutter.with_zizmor == 'true' %}
+
+  "echo 'Running GHA checks...'",
+  'GH_TOKEN="$(gh auth token)" zizmor .',
+{%- endif %}
+{%- if cookiecutter.with_gitleaks == 'true' %}
+
+  "echo 'Running secret scan...'",
+  "gitleaks git --log-opts=HEAD --redact --no-banner",
+{%- endif %}
+]
+{%- if cookiecutter.action_type == 'node' %}
+
+[tasks.test]
+description = "Test project"
+run = [
+  "echo 'Running tests...'",
+  "npm run test",
+]
+
+[tasks.package]
+description = "Pack project"
+run = [
+  "echo 'Packing project...'",
+  "npm run package",
+]
+{%- endif %}
+
+[tasks.clean]
+description = "Clean project environment"
+run = [
+  "echo 'Cleaning node dependencies...'",
+  "rm -rf node_modules",
+]
+
+[tasks.dependencies-update]
+description = "Update dependencies"
+run = [
+  "echo 'Updating mise tools...'",
+  "mise upgrade --bump",
+
+  "echo 'Updating node dependencies...'",
+  "npm update",
+]
+
+[tasks.dependencies-check]
+description = "Check dependencies"
+run = [
+  "echo 'Checking mise tools...'",
+  "mise outdated",
+
+  "echo 'Checking node dependencies...'",
+  "npm outdated",
+  "npm audit",
+]
+
+[tasks.update-from-template]
+description = "Update project from template; TEMPLATE_PATH=<path> in the environment overrides the source"
+run = [
+  "echo 'Updating project from template...'",
+  '''
+  cookiecutter \
+    --no-input \
+    --overwrite-if-exists \
+    --output-dir ../ \
+    "${TEMPLATE_PATH:-https://github.com/ovsds/template-repository-github-action}" \
+    project_name='{{cookiecutter.project_name}}' \
+    project_slug='{{cookiecutter.project_slug}}' \
+    marketplace_name='{{cookiecutter.marketplace_name}}' \
+    action_type='{{cookiecutter.action_type}}' \
+    node_version='{{cookiecutter.node_version}}' \
+    owner_name='{{cookiecutter.owner_name}}' \
+    owner_github_login='{{cookiecutter.owner_github_login}}' \
+    with_zizmor='{{cookiecutter.with_zizmor}}' \
+    with_gitleaks='{{cookiecutter.with_gitleaks}}' \
+    with_shellcheck='{{cookiecutter.with_shellcheck}}'
+  ''',
+]

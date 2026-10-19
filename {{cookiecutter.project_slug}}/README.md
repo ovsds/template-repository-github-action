@@ -45,18 +45,13 @@ outputs:
 
 ### Global dependencies
 
-- [Taskfile](https://taskfile.dev/installation/)
-- [nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#install--update-script)
-{%- if cookiecutter.with_zizmor == 'true' %}
-- [zizmor](https://woodruffw.github.io/zizmor/installation/) - used for GHA security scanning
-{%- endif %}
-{%- if cookiecutter.with_shellcheck == 'true' %}
-- [shellcheck](https://github.com/koalaman/shellcheck?tab=readme-ov-file#installing) - used for shell script linting
-{%- endif %}
+- [mise](https://mise.jdx.dev/installing-mise.html), activated in the shell (`eval "$(mise activate zsh)"`)
 
-### Taskfile commands
+All other tools are pinned in [mise.toml](mise.toml).
 
-For all commands see [Taskfile](Taskfile.yaml) or `task --list-all`.
+### mise tasks
+
+For all commands see [mise.toml](mise.toml) or `mise tasks ls`.
 
 ## License
 
