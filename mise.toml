@@ -1,4 +1,3 @@
-# monorepo config roots and `//<root>:<task>` references need a recent mise
 min_version = "2026.10.3"
 
 [tools]
