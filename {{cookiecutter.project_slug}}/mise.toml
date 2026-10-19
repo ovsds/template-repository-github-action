@@ -16,9 +16,6 @@ gitleaks = "8.30.1"
 shellcheck = "0.11.0"
 {%- endif %}
 
-[env]
-_.path = ["node_modules/.bin"]
-
 [settings]
 task.quiet = true
 
