@@ -13,6 +13,13 @@
       }
     },
     {
+      "name": "With Gitleaks",
+      "parameters": {
+        "action_type": "node",
+        "with_gitleaks": "true"
+      }
+    },
+    {
       "name": "With Shellcheck",
       "parameters": {
         "action_type": "composite",

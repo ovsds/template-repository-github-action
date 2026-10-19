@@ -33,3 +33,5 @@ if __name__ == "__main__":
     remove_file(".eslintignore", missing_ok=True)
     remove_file(".eslintrc.json", missing_ok=True)
     remove_file(".husky/.huskyrc", missing_ok=True)
+    remove_file(".nvmrc", missing_ok=True)
+    remove_file("Taskfile.yaml", missing_ok=True)
