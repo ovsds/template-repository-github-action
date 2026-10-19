@@ -6,7 +6,6 @@ import tests.utils.cli as cli_utils
 MANIFEST_PATH = "tests/replays.json"
 ADDITIONAL_FILES_PATH = "tests/additional_files"
 RESULTS_PATH = ".test_results"
-NODE_BIN_PATH = "node_modules/.bin"
 
 
 def test_replay(replay: replay_utils.Replay):
@@ -23,8 +22,7 @@ def test_replay(replay: replay_utils.Replay):
     cli_utils.run_command("mise run lint", cwd=cwd)
     cli_utils.run_command("mise run lint-fix", cwd=cwd)
     if replay.parameters.get("action_type") == "node":
-        # vitest watches for changes unless CI is set
-        cli_utils.run_command("CI=true mise run test", cwd=cwd)
+        cli_utils.run_command("mise run test", cwd=cwd)
         cli_utils.run_command("mise run package", cwd=cwd)
     cli_utils.run_command("mise run clean", cwd=cwd)
 
