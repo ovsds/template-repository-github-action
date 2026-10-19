@@ -41,3 +41,5 @@ jobs:
       - name: Test PR
         run: |
           mise run test
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Required for Zizmor

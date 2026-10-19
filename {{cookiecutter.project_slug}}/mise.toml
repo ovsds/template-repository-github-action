@@ -2,7 +2,11 @@ min_version = "2026.10.3"
 
 [tools]
 node = "{{ cookiecutter.node_version.lstrip('v') }}"
+uv = "0.13.1"
+python = "3.12.15"
+"pypi:cookiecutter" = "2.4.0"
 {%- if cookiecutter.with_zizmor == 'true' %}
+gh = "2.102.0"
 zizmor = "1.31.1"
 {%- endif %}
 {%- if cookiecutter.with_gitleaks == 'true' %}
