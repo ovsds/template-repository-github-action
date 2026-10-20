@@ -24,7 +24,7 @@ if __name__ == "__main__":
         remove_file("eslint.config.js")
         remove_file("tsconfig.json")
         remove_file("tsconfig_eslint.json")
-        remove_file("vitest.config.ts")
+        remove_file("vitest.config.mts")
 
     if "{{ cookiecutter.action_type }}" != "composite":
         remove_file("src/main.sh")
@@ -35,3 +35,4 @@ if __name__ == "__main__":
     remove_file(".husky/.huskyrc", missing_ok=True)
     remove_file(".nvmrc", missing_ok=True)
     remove_file("Taskfile.yaml", missing_ok=True)
+    remove_file("vitest.config.ts", missing_ok=True)

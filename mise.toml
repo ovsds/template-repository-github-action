@@ -1,11 +1,11 @@
 min_version = "2026.10.3"
 
 [tools]
-node = "21.5.0"
+node = "26.12.0"
 uv = "0.13.1"
-python = "3.12.15"
-"pypi:poetry" = "1.7.1"
-"pypi:cookiecutter" = "2.4.0"
+python = "3.15.0"
+"pypi:poetry" = "2.5.1"
+"pypi:cookiecutter" = "2.7.1"
 zizmor = "1.31.1"
 gitleaks = "8.30.1"
 
@@ -19,7 +19,7 @@ run = [
   "mise install",
 
   "echo 'Installing node dependencies...'",
-  "npm install",
+  "if [ -f package-lock.json ]; then npm ci; else npm install; fi",
 
   "echo 'Installing husky pre-commit...'",
   "npm run prepare",
@@ -29,7 +29,7 @@ run = [
 description = "Lint project"
 run = [
   "echo 'Running prettier checks...'",
-  "npx prettier --check .",
+  "npx --no -- prettier --check .",
 
   "echo 'Running GHA checks...'",
   'GH_TOKEN="$(gh auth token)" zizmor .',
@@ -42,7 +42,7 @@ run = [
 description = "Lint fix project"
 run = [
   "echo 'Running prettier fixes...'",
-  "npx prettier --write .",
+  "npx --no -- prettier --write .",
 
   "echo 'Running GHA checks...'",
   'GH_TOKEN="$(gh auth token)" zizmor .',
@@ -101,7 +101,7 @@ run = [
     "${TEMPLATE_PATH:-https://github.com/ovsds/template-repository}" \
     project_name='Cookiecutter Template for GitHub Actions Repository' \
     project_slug='template-repository-github-action' \
-    node_version='v21.5.0' \
+    node_version='v26.12.0' \
     github_workflow_runs_on='ubuntu-latest' \
     owner_name='Dmitry Ovsiannikov' \
     owner_github_login='ovsds' \
@@ -115,4 +115,7 @@ run = [
     with_docker='false' \
     with_build='false'
   ''',
+
+  "echo 'Syncing package-lock.json with the updated package.json...'",
+  "npm install",
 ]
