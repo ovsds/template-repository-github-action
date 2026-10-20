@@ -4,22 +4,22 @@
 {%- if cookiecutter.action_type == 'node' %}
   "main": "lib/main.js",
   "dependencies": {
-    "@actions/core": "2.0.1"
+    "@actions/core": "3.0.1"
   },
 {%- endif %}
   "devDependencies": {
 {%- if cookiecutter.action_type == 'node' %}
-    "@types/node": "^25.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.0.0",
-    "@vercel/ncc": "^0.38.0",
-    "eslint": "^9.0.0",
-    "vitest": "^4.0.0",
+    "@types/node": "^26.6.5",
+    "@typescript-eslint/eslint-plugin": "^8.72.0",
+    "@vercel/ncc": "^0.45.0",
+    "eslint": "^10.13.0",
+    "vitest": "^5.0.5",
 {%- endif %}
-    "@commitlint/cli": "^20.0.0",
-    "@commitlint/config-conventional": "^20.0.0",
-    "husky": "^9.0.0",
-    "lint-staged": "^16.0.0",
-    "prettier": "^3.0.0"
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.9.10"
   },
   "hooks": {
     "pre-commit": "lint-staged",
