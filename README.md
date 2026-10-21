@@ -12,7 +12,7 @@ A new repo with:
 
 - `action.yaml` carrying Marketplace metadata and a placeholder input/output you replace.
 - One of two action runtimes, chosen via the `action_type` prompt:
-  - **`composite`** — `src/main.sh` shell entrypoint wired into `action.yaml` as a composite action.
+  - **`composite`** — `src/main.sh` shell entrypoint wired into `action.yaml` as a composite action, sourcing the shared helpers (`print_info`, `print_error`, `set_output`) from `src/common.sh`.
   - **`node`** — TypeScript sources under `src/` (`action.ts`, `input.ts`, `main.ts`, `utils/`) bundled via `@vercel/ncc`, plus Vitest unit tests, ESLint config, and a `dist/` cleanliness check in CI. Runs on `node24` by default.
 - Workflows under `.github/workflows/`:
   - `check-pr` — lint, plus tests and `dist/` verification for node actions.

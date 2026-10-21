@@ -27,6 +27,7 @@ if __name__ == "__main__":
         remove_file("vitest.config.mts")
 
     if "{{ cookiecutter.action_type }}" != "composite":
+        remove_file("src/common.sh")
         remove_file("src/main.sh")
 
     # Remove files from older versions
