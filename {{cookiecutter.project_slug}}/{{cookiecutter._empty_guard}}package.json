@@ -38,7 +38,7 @@
 {%- endif %}
 {%- if cookiecutter.with_shellcheck == 'true' %}
     "*.sh": [
-      "shellcheck"
+      "shellcheck --external-sources"
     ],
 {%- endif %}
     "*.{md,yaml,json,js}": [
@@ -52,7 +52,7 @@
 {%- endif %}
     "lint:check:prettier": "prettier --check .",
 {%- if cookiecutter.with_shellcheck == 'true' %}
-    "lint:check:shellcheck": "shellcheck **/*.sh --enable=all",
+    "lint:check:shellcheck": "shellcheck **/*.sh --external-sources --enable=all",
 {%- endif %}
     "lint:fix": "npm run lint:fix:prettier{% if cookiecutter.action_type == 'node' %} && npm run lint:fix:eslint{% endif %}{% if cookiecutter.with_shellcheck == 'true' %} && npm run lint:fix:shellcheck{% endif %}",
 {%- if cookiecutter.action_type == 'node' %}
@@ -60,7 +60,7 @@
 {%- endif %}
     "lint:fix:prettier": "prettier --write .",
 {%- if cookiecutter.with_shellcheck == 'true' %}
-    "lint:fix:shellcheck": "shellcheck **/*.sh --enable=all",
+    "lint:fix:shellcheck": "shellcheck **/*.sh --external-sources --enable=all",
 {%- endif %}
 {%- if cookiecutter.action_type == 'node' %}
     "test": "vitest",
