@@ -87,6 +87,10 @@ description = "Clean project environment"
 run = [
   "echo 'Cleaning node dependencies...'",
   "rm -rf node_modules",
+
+  "echo 'Cleaning artifacts and worktrees...'",
+  "rm -rf artifacts",
+  "git worktree prune || true",
 ]
 
 [tasks.dependencies-update]

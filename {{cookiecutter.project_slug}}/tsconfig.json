@@ -10,5 +10,5 @@
     "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
     "types": ["node"] /* TypeScript 6 no longer loads @types/* by default, @actions/core needs NodeJS. */
   },
-  "exclude": ["node_modules", "tests", "vitest.config.mts"]
+  "exclude": ["node_modules", "tests", "vitest.config.mts", "artifacts"]
 }
