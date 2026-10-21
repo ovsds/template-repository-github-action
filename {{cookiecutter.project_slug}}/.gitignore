@@ -10,6 +10,9 @@ node_modules/
 
 # Environment
 .env
+
+# Worktrees and working files
+/artifacts/
 {%- if cookiecutter.action_type == 'node' %}
 
 # Build files

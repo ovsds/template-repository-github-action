@@ -18,6 +18,8 @@ def test_replay(replay: replay_utils.Replay, results_path: str):
     cli_utils.run_command("git init", cwd=cwd)
     cli_utils.run_command("git add --all", cwd=cwd)
     cli_utils.run_command("git -c user.name=test -c user.email=test@example.com -c commit.gpgsign=false commit --quiet --no-verify -m init", cwd=cwd)
+    # a worktree under artifacts/, so a tool that walks into it fails init, lint, test or package
+    cli_utils.run_command("git worktree add --quiet --detach artifacts/worktrees/test", cwd=cwd)
     cli_utils.run_command("mise run init", cwd=cwd)
     cli_utils.run_command("mise run lint", cwd=cwd)
     cli_utils.run_command("mise run lint-fix", cwd=cwd)
@@ -26,6 +28,8 @@ def test_replay(replay: replay_utils.Replay, results_path: str):
         cli_utils.run_command("CI=true mise run test", cwd=cwd)
         cli_utils.run_command("mise run package", cwd=cwd)
     cli_utils.run_command("mise run clean", cwd=cwd)
+    assert not os.path.exists(f"{cwd}/artifacts"), "mise run clean left artifacts/"
+    assert not os.path.exists(f"{cwd}/.git/worktrees"), "mise run clean left the worktree registered"
 
     replay_utils.clean_replay(replay, results_path)
 
